@@ -2,28 +2,64 @@
 #include<stdlib.h>
 #include<string.h>
 
-int main()
+int main ()
 {
-	printf("Tema: Cidades do Triângulo Mineiro\n\n\n");
-	char palavra[22], letra[10], a;
-	int comp, i ;
+	char palavra [22], lacuna [22]="-", letra [22], erros [22], tam;
+	int vida = 6, retornaVidas, pontos=0, i, i2=0;
 	
-	printf("Digite uma palavra dentro do tema:\n", palavra );
+	printf("Tema: utensilios da cozinha\n\n");
+	printf("Digite a palavra a ser adivinhada: \n");
 	gets(palavra);
 	
-	
-	
-	for(i=0;i<10;i++)
-	{
-		printf("Letra:\n");
-		gets(letra);
-		
-		comp=strcmp(letra, palavra);
+	for (i=0; i<strlen(palavra); i++){
+		lacuna[i]='-';
+	    tam=strlen(palavra);
 	}
-	if(comp==0)
-		{
-			printf("Letra está na palavra\n");
-		}
-	
-	
+	    
+	while (vida > 0)
+	{
+	    retornaVidas = 0;
+	    	
+	    printf ("\n%s\n",lacuna);
+	    printf("Digite uma letra\n");
+	    gets(letra);	
+	    	
+	    	for (i =0; i <strlen(palavra); i++)
+			{
+	    		if (letra[0]==palavra[i])
+	    		{
+	    			lacuna[i] = palavra[i];
+	    			retornaVidas++;
+	    			pontos++;		
+				}
+			}
+			if(retornaVidas == 0)
+			{
+			  vida--;
+			  
+				if (vida == 0)
+				{
+					printf ("\n\tVoce perdeu.\n");
+			 		printf ("\n\tA palavra certa era %s\n",palavra);
+				}
+		    	else
+		    	{
+					printf ("\n\nVoce errou uma letra. Restam %d vidas\n",vida);
+					erros[i2] = letra[0];
+					i2++;
+	    		}
+			}
+			else
+		    {
+			   if (pontos == tam)
+			   {
+			    	printf ("\nVoce acertou a palavra\n");
+			    	break;
+			   }
+	  		  	else
+				{
+					printf ("Voce acertou uma das letra.\n");	
+				}
+	   		}
+	}
 }
